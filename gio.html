@@ -4,19 +4,67 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GIO es gay</title>
+    <title>GIO</title>
   </head>
   <body>
     <input type="text" name="num1" id="num1" />
     <input type="text" name="num2" id="num2" />
 
-    <input type="button" value="Sumar" onclick="alert(sumInputs())" />
-    <input type="button" value="Restar" onclick="alert(restInputs())" />
-    <input type="button" value="Multiplicar" onclick="alert(multiInputs())" />
-    <input type="button" value="Dividir" onclick="alert(divInputs())" />
+    <input type="button" value="Sumar" onclick="alert(calculate('sum'))" />
+    <input type="button" value="Restar" onclick="alert(calculate('rest'))" />
+    <input
+      type="button"
+      value="Multiplicar"
+      onclick="alert(calculate('multiply'))"
+    />
+    <input type="button" value="Dividir" onclick="alert(calculate('divide'))" />
+    <input type="button" value="Dividir" onclick="alert(calculate('pi'))" />
 
     <script>
-      function sumInputs() {
+      function calculate(operation) {
+        const valor1 = getInputValue("num1");
+        const valor2 = getInputValue("num2");
+        /*
+        enum operations{
+          "sum",
+          "rest",
+          "multiply",
+          "divide",
+        }
+        */
+        var result = 0;
+        /*
+        if (operation == "sum") {
+          result = sum(valor1, valor2);
+        } else if (operation == "rest") {
+          result = rest(valor1, valor2);
+        } else if (operation == "multiply") {
+          result = multiply(valor1, valor2);
+        } else if (operation == "divide") {
+          result = divide(valor1, valor2);
+        } else {
+          throw Error("es");
+        } */
+        switch (operation) {
+          case "sum":
+            result = sum(valor1, valor2);
+            break;
+          case "rest":
+            result = rest(valor1, valor2);
+            break;
+          case "multiply":
+            result = multiply(valor1, valor2);
+            break;
+
+          case "divide":
+          case "pi":
+          default:
+            result = divide(valor1, valor2);
+            break;
+        }
+        return result;
+      }
+      /* function sumInputs() {
         const valor1 = getInputValue("num1");
         const valor2 = getInputValue("num2");
         return sum(valor1, valor2);
@@ -35,11 +83,10 @@
         const valor1 = getInputValue("num1");
         const valor2 = getInputValue("num2");
         return divide(valor1, valor2);
-      }
+      } */
       function sum(num1, num2) {
         return num1 + num2;
       }
-
       function rest(num1, num2) {
         return num1 - num2;
       }
